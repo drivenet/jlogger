@@ -60,9 +60,9 @@ int main(int argc, char *argv[])
     fields[2].iov_base = message_data;
     fields[2].iov_len = data_length;
     int result = sd_journal_sendv(fields, FIELD_COUNT);
-    if (result != 0)
+    if (result)
     {
-        fprintf(stderr, "Failed to send message to the journal, code %d: %s.", priority, strerror(result));
+        fprintf(stderr, "Failed to send message to the journal, code %d: %s.", result, strerror(result));
         return -result;
     }
 
